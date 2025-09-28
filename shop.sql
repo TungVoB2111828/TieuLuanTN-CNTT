@@ -37,13 +37,18 @@ ALTER TABLE categories
 ADD COLUMN created_at DATETIME NULL DEFAULT NULL,
 ADD COLUMN updated_at DATETIME NULL DEFAULT NULL;
 INSERT INTO `categories` (`category_id`, `name`, `description`) VALUES
-(1, 'Điện thoại', 'Các loại điện thoại mới nhất'),
-(2, 'Laptop', 'Máy tính xách tay cao cấp'),
-(3, 'Phụ kiện', 'Tai nghe, sạc, cáp...'),
-(4, 'Bàn phím', 'Bàn phím máy tính'),
-(5, 'Chuột', 'Chuột máy tính'),
-(6, 'Smartwatch', 'Đồng hồ thông minh');
+(1, 'Manga', 'Các loại truyện tranh Nhật Bản'),
+(2, 'Comic', 'Các loại truyện tranh phương Tây'),
+(3, 'Anime', 'Phim hoạt hình Nhật Bản'),
+(4, 'Cartoon', 'Phim hoạt hình phương Tây'),
+(5, 'Light Novel', 'Tiểu thuyết Nhật Bản'),
+(6, 'Novel', 'Tiểu thuyết phương Tây'),
+(7, 'Artbook', 'Sách ảnh'),
+(8, 'Tutorial Book', 'Sách hướng dẫn'),
+(9, 'Movies', 'Phim điện ảnh'),
+(10, 'Magazine', 'Tạp Chí');
 select * from categories;
+delete from categories;
 
 CREATE TABLE `comment` (
   `cmt_id` int(11) NOT NULL,
@@ -127,30 +132,31 @@ CREATE TABLE `products` (
 ALTER TABLE products ADD COLUMN rating FLOAT DEFAULT 0;
 
 INSERT INTO `products` (`product_id`, `staff_id`, `category_id`, `name`, `description`, `price`, `stock_quantity`, `image_url`, `status`, `created_at`) VALUES
-(1, 1, 1, 'iPhone 14 Pro Max', 'Điện thoại cao cấp của Apple', 33990000.00, 10, 'images/iphone14.jpg', 1, '2025-05-21 16:50:19'),
-(2, 1, 2, 'Laptop Dell XPS 13', 'Laptop mỏng nhẹ, hiệu suất cao', 28990000.00, 5, 'images/dellxps.jpg', 1, '2025-05-21 16:50:19'),
-(3, 1, 3, 'Tai nghe Bluetooth Sony', 'Chống ồn, pin lâu', 1990000.00, 20, 'images/sony-headphone.jpg', 1, '2025-05-21 16:50:19'),
-(24, 1, 1, 'Điện thoại Samsung Galaxy S21', 'Samsung Galaxy S21, 128GB, màu trắng.', 17990000.00, 40, 'images/galaxy_s21.jpg', 1, '2025-05-29 19:16:57'),
-(25, 1, 2, 'Laptop MacBook Air M1', 'Apple MacBook Air M1 2020, 8GB RAM, 256GB SSD.', 22990000.00, 20, 'images/macbook_air_m1.jpg', 1, '2025-05-29 19:16:57'),
-(26, 1, 3, 'Tai nghe AirPods Pro', 'Apple AirPods Pro, chống ồn chủ động.', 4990000.00, 80, 'images/airpods_pro.jpg', 1, '2025-05-29 19:16:57'),
-(27, 1, 4, 'Bàn phím cơ Logitech', 'Bàn phím cơ Logitech G413, led RGB.', 2590000.00, 60, 'images/logitech_keyboard.jpg', 1, '2025-05-29 19:16:57'),
-(28, 1, 5, 'Chuột không dây Logitech', 'Chuột không dây Logitech MX Master 3.', 1990000.00, 70, 'images/logitech_mouse.jpg', 1, '2025-05-29 19:16:57'),
-(29, 1, 6, 'Smartwatch Xiaomi Mi Band 6', 'Vòng đeo tay thông minh Xiaomi Mi Band 6.', 799000.00, 90, 'images/mi_band_6.jpg', 1, '2025-05-29 19:16:57'),
-(30, 1, 2, 'Laptop HP Pavilion', 'Laptop HP Pavilion 15, i7, 16GB RAM, 512GB SSD.', 20990000.00, 25, 'images/hp_pavilion.jpg', 1, '2025-05-29 19:16:57'),
-(31, 1, 1, 'Điện thoại Oppo Reno6', 'Oppo Reno6, 128GB, màu xanh dương.', 8990000.00, 55, 'images/oppo_reno6.jpg', 1, '2025-05-29 19:16:57'),
-(32, 1, 2, 'Laptop Asus Vivobook', 'Laptop Asus Vivobook 14, i3, 8GB RAM, 256GB SSD.', 10990000.00, 45, 'images/asus_vivobook.jpg', 1, '2025-05-29 19:16:57'),
-(33, 1, 3, 'Tai nghe JBL Tune 500BT', 'Tai nghe Bluetooth JBL Tune 500BT.', 1200000.00, 150, 'images/jbl_tune500bt.jpg', 1, '2025-05-29 19:16:57'),
-(34, 1, 4, 'Bàn phím Razer BlackWidow', 'Bàn phím cơ Razer BlackWidow V3.', 3500000.00, 35, 'images/razer_blackwidow.jpg', 1, '2025-05-29 19:16:57'),
-(35, 1, 5, 'Chuột Gaming Logitech G502', 'Chuột gaming Logitech G502 Hero.', 1500000.00, 40, 'images/logitech_g502.jpg', 1, '2025-05-29 19:16:57'),
-(36, 1, 6, 'Smartwatch Apple Watch Series 6', 'Apple Watch Series 6, GPS, 44mm.', 9990000.00, 22, 'images/apple_watch6.jpg', 1, '2025-05-29 19:16:57'),
-(37, 1, 1, 'Điện thoại Xiaomi Redmi Note 10', 'Xiaomi Redmi Note 10, 128GB.', 4990000.00, 65, 'images/redmi_note10.jpg', 1, '2025-05-29 19:16:57'),
-(38, 1, 2, 'Laptop Lenovo ThinkPad', 'Laptop Lenovo ThinkPad E14, i5, 8GB RAM.', 14990000.00, 28, 'images/lenovo_thinkpad.jpg', 1, '2025-05-29 19:16:57'),
-(39, 1, 3, 'Tai nghe Bose QuietComfort', 'Tai nghe chống ồn Bose QC35 II.', 7500000.00, 18, 'images/bose_qc35.jpg', 1, '2025-05-29 19:16:57'),
-(40, 1, 4, 'Bàn phím không dây Apple Magic Keyboard', 'Apple Magic Keyboard không dây.', 2990000.00, 50, 'images/magic_keyboard.jpg', 1, '2025-05-29 19:16:57'),
-(41, 1, 1, 'Điện thoại Nokia 3310', 'Điện thoại cổ điển Nokia 3310.', 500000.00, 100, 'images/nokia_3310.jpg', 1, '2025-05-29 19:16:57'),
-(42, 1, 2, 'Laptop Acer Aspire 5', 'Laptop Acer Aspire 5, i5, 8GB RAM, 256GB SSD.', 11990000.00, 35, 'images/acer_aspire5.jpg', 1, '2025-05-29 19:16:57'),
-(43, 1, 3, 'Tai nghe Sony WH-1000XM4', 'Tai nghe Sony WH-1000XM4 chống ồn.', 8200000.00, 15, 'images/sony_wh1000xm4.jpg', 1, '2025-05-29 19:16:57');
-
+(1, 1, 1, 'Trọn bộ 34 tập Manga Attack on Titan', 'Kiệt tác để đời của tác giả Isayama Hajime', 1000000.00, 10, 'images/AoT_manga.jpg', 1, '2025-05-21 16:50:19'),
+(2, 1, 7, 'Zootopia Artbook', 'Sách mở rộng về thế giới của Zootopia', 200000.00, 10, 'images/ZAB.jpg', 1, '2025-05-21 16:50:19'),
+(3, 1, 2, 'Zootopia Comic', 'Comic của Zootopia', 90000.00, 10, 'images/ZC.jpg', 1, '2025-05-21 16:50:19'),
+(4, 1, 3, 'Attack on Titan: The Last Attack', 'Final movie của siêu phẩm Attack on Titan', 100000.00, 10, 'images/TLA.jpg', 1, '2025-05-21 16:50:19'),
+(5, 1, 1, 'Trọn bộ 22 tập Manga Beastars', 'Manga tuyệt vời của Paru Itagaki', 800000.00, 10, 'images/BM.jpg', 1, '2025-05-21 16:50:19'),
+(6, 1, 1, 'The Promised Neverland Complete Box', 'Complete Box Set của 20 tập truyện Miền Đất Hứa', 900000.00, 10, 'images/TPN.jpg', 1, '2025-05-21 16:50:19'),
+(7, 1, 3, 'The Seven Deadly Sins', 'Full Seasons Anime Thất Hình Đại Tội của tác giả Suzuki Nakaba', 80000.00, 10, 'images/TSDS.jpg', 1, '2025-05-21 16:50:19'),
+(8, 1, 8, 'How to draw Manga Furries', 'Sách hướng dẫn vẽ Furry', 300000.00, 10, 'images/HTDFM.jpg', 1, '2025-05-21 16:50:19'),
+(9, 1, 6, 'Ready Player One', 'Tiểu thuyết khoa học viễn tưởng của Ernest Cline', 130000.00, 10, 'images/RPO.jpg', 1, '2025-05-21 16:50:19'),
+(10, 1, 9, 'The Kingsman', '3 phần phim đặc vụ Kingsman', 300000.00, 10, 'images/KM.jpg', 1, '2025-05-21 16:50:19'),
+(11, 1, 9, 'The Bad Guys', '2 phần phim băng quái kiệt', 200000.00, 10, 'images/TBGM.jpg', 1, '2025-05-21 16:50:19'),
+(12, 1, 6, 'Chronicles of Narnia', '7 phần tiểu thuyết Narnia của C.S.Lewis', 700000.00, 10, 'images/Narnia.png', 1, '2025-05-21 16:50:19'),
+(13, 1, 9, 'Harry Potter', '8 phần phim điện ảnh Harry Potter của J.K.Rowling', 800000.00, 10, 'images/HPM.jpg', 1, '2025-05-21 16:50:19'),
+(14, 1, 8, 'Kawaii Sensei Manga Draw Tutorial', 'Sách hướng dẫn vẽ Manga', 99000.00, 10, 'images/MD.jpg', 1, '2025-05-21 16:50:19'),
+(15, 1, 3, 'Beastars', '3 phần Anime Beastars', 60000.00, 10, 'images/Beastars_2.jpg', 1, '2025-05-21 16:50:19'),
+(16, 1, 5, 'Shinkai Makoto combo', '3 quyển tiểu thuyết điện ảnh của Shinkai Makoto', 330000.00, 10, 'images/SM.jpg', 1, '2025-05-21 16:50:19'),
+(17, 1, 7, 'Elden Ring Official Artbook', 'Sách ảnh của GOTY Elden Ring', 175000.00, 10, 'images/ERA.jpg', 1, '2025-05-21 16:50:19'),
+(18, 1, 7, 'Ori Series Artbook', 'Sách ảnh của Ori and the Blind Forest + The Will of The Wips', 420000.00, 10, 'images/OATBF.jpg', 1, '2025-05-21 16:50:19'),
+(19, 1, 9, 'Sing', '2 phần phim Sing - Đấu trường âm nhạc', 1000000.00, 10, 'images/Sing.jpg', 1, '2025-05-21 16:50:19'),
+(20, 1, 4, 'The Amazing World of Gumball', 'Full Seasons của Gumball', 500000.00, 10, 'images/TAWOG.jpg', 1, '2025-05-21 16:50:19'),
+(21, 1, 4, 'Gravity Falls', 'Full Seasons của Gravity Falls', 440000.00, 10, 'images/GF.jpg', 1, '2025-05-21 16:50:19'),
+(22, 1, 10, 'Manga & Anime Magazine', 'Tạp chí Anime Manga', 50000.00, 10, 'images/TUG.jpg', 1, '2025-05-21 16:50:19'),
+(23, 1, 10, 'Game Magazine', 'Tạp chí Game', 45000.00, 10, 'images/GM.jpg', 1, '2025-05-21 16:50:19'),
+(24, 1, 4, 'Phineas & Ferb', 'Full Seasons của Phineas và Ferb', 685000.00, 10, 'images/PAF.jpg', 1, '2025-05-21 16:50:19'),
+(25, 1, 3, 'Souma: Food Wars', 'Full Seasons của Shokugeki no Souma', 550000.00, 10, 'images/Souma.jpg', 1, '2025-05-21 16:50:19');
 select * from products;
 delete from products;
 

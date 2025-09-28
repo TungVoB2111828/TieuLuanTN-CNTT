@@ -89,12 +89,16 @@
         <ul>
             @php
                 $categories = [
-                    ['label' => 'Điện thoại', 'id' => 1],
-                    ['label' => 'Laptop', 'id' => 2],
-                    ['label' => 'Phụ kiện', 'id' => 3],
-                    ['label' => 'Bàn phím', 'id' => 4],
-                    ['label' => 'Chuột', 'id' => 5],
-                    ['label' => 'Smartwatch', 'id' => 6],
+                    ['label' => 'Manga', 'id' => 1],
+                    ['label' => 'Comic', 'id' => 2],
+                    ['label' => 'Anime', 'id' => 3],
+                    ['label' => 'Cartoon', 'id' => 4],
+                    ['label' => 'Light Novel', 'id' => 5],
+                    ['label' => 'Novel', 'id' => 6],
+                    ['label' => 'Artbook', 'id' => 7],
+                    ['label' => 'Tutorial Book', 'id' => 8],
+                    ['label' => 'Movies', 'id' => 9],
+                    ['label' => 'Magazine', 'id' => 10],
                 ];
             @endphp
             @foreach($categories as $category)
@@ -109,12 +113,12 @@
 
     <!-- Ảnh quảng cáo -->
     <div class="banner">
-        <img src="{{ asset('./storage/images/qc1.png') }}" alt="Ảnh quảng cáo">
-        <img src="{{ asset('./storage/images/qc2.png') }}" alt="Ảnh quảng cáo">
+        <img src="{{ asset('./storage/images/AoT.jpg') }}" alt="Ảnh quảng cáo">
+        <img src="{{ asset('./storage/images/KM.jpg') }}" alt="Ảnh quảng cáo">
     </div>
     <div class="banner">
-        <img src="{{ asset('./storage/images/qc3.png') }}" alt="Ảnh quảng cáo">
-        <img src="{{ asset('./storage/images/qc4.png') }}" alt="Ảnh quảng cáo">
+        <img src="{{ asset('./storage/images/Zootopia.jpg') }}" alt="Ảnh quảng cáo">
+        <img src="{{ asset('./storage/images/Narnia.png') }}" alt="Ảnh quảng cáo">
     </div>
 </div>
 

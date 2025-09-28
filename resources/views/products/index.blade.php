@@ -111,32 +111,34 @@
         }
     }
 
-    /* Horizontal product list */
-    .horizontal-scroll-wrapper {
-        display: flex;
-        overflow-x: auto;
-        gap: 1rem;
-        padding-bottom: 1rem;
-        scroll-snap-type: x mandatory;
+    /* Grid hiển thị sản phẩm */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 cột đều nhau */
+        gap: 1.5rem;
     }
-
     .product-horizontal-card {
-        flex: 0 0 auto;
-        width: 240px;
-        scroll-snap-align: start;
+        width: 100%; /* mỗi ô chiếm full trong cột */
     }
-
-    .horizontal-scroll-wrapper::-webkit-scrollbar {
-        height: 8px;
+    @media (max-width: 1200px) {
+        .product-grid {
+            grid-template-columns: repeat(4, 1fr); /* 4 cột */
+        }
     }
-
-    .horizontal-scroll-wrapper::-webkit-scrollbar-thumb {
-        background-color: #ced4da;
-        border-radius: 4px;
+    @media (max-width: 992px) {
+        .product-grid {
+            grid-template-columns: repeat(3, 1fr); /* 3 cột */
+        }
     }
-
-    .horizontal-scroll-wrapper::-webkit-scrollbar-track {
-        background-color: #f8f9fa;
+    @media (max-width: 768px) {
+        .product-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 cột */
+        }
+    }
+    @media (max-width: 480px) {
+        .product-grid {
+            grid-template-columns: 1fr; /* 1 cột */
+        }
     }
 </style>
 
@@ -157,7 +159,6 @@
             <div class="flex flex-wrap gap-3">
                 @foreach($categories as $category)
                     @php
-                        // Gán icon theo tên danh mục
                         $icons = [
                             'Điện thoại' => 'fa-mobile-alt',
                             'Laptop' => 'fa-laptop',
@@ -212,7 +213,6 @@
             </form>
         </div>
 
-
         <!-- Danh sách sản phẩm -->
         <div class="col-md-9">
             <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
@@ -222,7 +222,7 @@
                 </span>
             </div>
 
-            <div class="horizontal-scroll-wrapper mb-4">
+            <div class="product-grid mb-4">
                 @forelse($products as $product)
                 <div class="product-horizontal-card">
                     @include('products.product-card', ['product' => $product])

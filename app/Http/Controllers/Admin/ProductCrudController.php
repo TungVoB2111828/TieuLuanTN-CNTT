@@ -18,7 +18,6 @@ class ProductCrudController extends Controller
     {
         $products = Product::with(['staff', 'category'])->get();
         $categories = Category::all();
-
         return view('admin.products.index', compact('products', 'categories'));
     }
     public function create()

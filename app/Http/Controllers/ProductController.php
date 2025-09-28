@@ -50,7 +50,8 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        $products = $query->paginate(12);
+        // ✅ chỉnh lại paginate thành 20 (5 cột × 4 hàng)
+        $products = $query->paginate(20);
         $categories = Category::all();
 
         return view('products.index', compact('products', 'categories'));
@@ -65,7 +66,9 @@ class ProductController extends Controller
     public function category($id)
     {
         $category = Category::findOrFail($id);
-        $products = Product::where('Category_id', $id)->paginate(12);
+
+        // ✅ chỉnh paginate thành 20
+        $products = Product::where('Category_id', $id)->paginate(20);
         $categories = Category::all();
 
         return view('products.category', compact('products', 'category', 'categories'));
@@ -80,6 +83,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
+
         // ✅ Ghi nhận điểm nếu người dùng đã đăng nhập
         if (Auth::check()) {
             $userId = Auth::id();
@@ -101,6 +105,7 @@ class ProductController extends Controller
                 ]);
             }
         }
+
         $relatedProducts = Product::where('Category_id', $product->Category_id)
                                 ->where('Product_id', '!=', $id)
                                 ->take(4)
@@ -119,11 +124,11 @@ class ProductController extends Controller
     {
         $query = $request->input('q');
 
+        // ✅ chỉnh paginate thành 20
         $products = Product::where('name', 'like', "%{$query}%")
                         ->orWhere('description', 'like', "%{$query}%")
-                        ->paginate(12);
+                        ->paginate(20);
 
         return view('products.search', compact('products', 'query'));
     }
-
 }

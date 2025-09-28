@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ProductCrudController;
 use App\Http\Controllers\Admin\StaffCrudController;
 use App\Http\Controllers\Admin\CategoryCrudController;
 use App\Http\Controllers\Admin\InvoiceCrudController;
+use App\Http\Controllers\Admin\UsersController;
 
 
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
@@ -112,6 +113,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/invoice/{id}', [InvoiceCrudController::class, 'update'])->name('invoice.update');
     Route::delete('/invoice/{id}', [InvoiceCrudController::class, 'destroy'])->name('invoice.destroy');
     Route::get('/admin/invoice/{id}', [InvoiceCrudController::class, 'show'])->name('admin.invoice.show');
+
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UsersController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
+
 });
 
 //Payment

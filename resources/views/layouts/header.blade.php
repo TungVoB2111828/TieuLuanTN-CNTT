@@ -1,7 +1,7 @@
 <header class="bg-white shadow-md">
     <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo -->
-        <a href="{{ route('home') }}" class="text-2xl font-bold text-blue-600 hover:text-blue-800 transition">Digital Shop</a>
+        <a href="{{ route('home') }}" class="text-2xl font-bold text-blue-600 hover:text-blue-800 transition">Entertainment Shop</a>
 
         <!-- Mobile Toggle -->
         <button class="lg:hidden text-gray-700 focus:outline-none" id="navbar-toggle">
