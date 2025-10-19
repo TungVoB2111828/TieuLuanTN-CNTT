@@ -43,6 +43,7 @@
                     <div class="flex justify-between border-b py-2 text-sm">
                         <div>
                             <div>Mã đơn: <strong>#{{ $invoice->invoice_id }}</strong></div>
+                            <div>Tên đơn: <strong>{{ $invoice->invoice_name }}</strong></div>
                             <div>Ngày đặt: {{ \Carbon\Carbon::parse($invoice->created_at)->format('d/m/Y') }}</div>
                         </div>
                         <div class="text-right">

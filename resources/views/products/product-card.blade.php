@@ -186,18 +186,6 @@
                     data-product-id="{{ $product->product_id }}">
                 <i class="fas fa-cart-plus"></i> Thêm
             </button>
-            <a href="#"
-               class="favorite-icon"
-               data-product-id="{{ $product->product_id }}"
-               data-bs-toggle="tooltip"
-               title="Thêm vào yêu thích">
-                @if(Auth::check() && Auth::user()->favorite->contains($product->product_id))
-                    <i class="fas fa-heart" style="color: #ef4444;"></i>
-
-                @else
-                    <i class="far fa-heart"></i>
-                @endif
-            </a>
         </div>
     </div>
 </div>

@@ -72,12 +72,6 @@
                             <span>Thanh toán khi nhận hàng (COD)</span>
                         </label>
 
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="payment_method" value="vnpay">
-                            <span>Thanh toán qua VNPay</span>
-                        </label>
-                    </div>
-
                     <!-- Đơn hàng -->
                     <div class="bg-white rounded-xl shadow p-6">
                         <h2 class="text-lg font-semibold mb-4">Đơn hàng của bạn</h2>
