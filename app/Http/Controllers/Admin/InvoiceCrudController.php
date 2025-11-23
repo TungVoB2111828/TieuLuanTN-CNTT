@@ -63,11 +63,10 @@ class InvoiceCrudController extends Controller
             ->findOrFail($id);
 
         $orderStatuses = [
-            'new' => 'Đơn hàng mới',
-            'pending' => 'Đang xử lý',
-            'processing' => 'Đang chuẩn bị',
-            'shipped' => 'Đã giao vận',
-            'delivered' => 'Đã giao hàng',
+            'pending' => 'Chờ xác nhận',
+            'processing' => 'Chờ lấy hàng',
+            'shipped' => 'Đang giao hàng',
+            'delivered' => 'Thành công',
             'cancelled' => 'Đã hủy'
         ];
 

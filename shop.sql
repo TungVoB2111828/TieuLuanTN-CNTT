@@ -21,12 +21,14 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- laravel tao
 
 CREATE TABLE `cache_locks` (
   `key` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- laravel tao
 
 CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
@@ -58,6 +60,7 @@ CREATE TABLE `comment` (
   `comment` text DEFAULT NULL,
   `create_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+select * from comment;
 
 CREATE TABLE `favorite` (
   `user_id` int(11) NOT NULL,
@@ -79,6 +82,7 @@ CREATE TABLE `invoice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ALTER TABLE invoice CHANGE `invoice_id` `invoice_id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `invoice` ADD PRIMARY KEY (`invoice_id`);
+ALTER TABLE `invoice` ADD COLUMN `invoice_name` VARCHAR(255) DEFAULT NULL AFTER `invoice_id`;
 select * from invoice;
 SHOW CREATE TABLE invoice;
 delete from invoice;
@@ -98,7 +102,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+-- laravel tao
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2025_05_21_061113_create_personal_access_tokens_table', 1),
 (2, '2025_05_21_101936_create_cache_table', 2);
@@ -115,6 +119,7 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- laravel tao
 
 CREATE TABLE `products` (
   `product_id` int(11) NOT NULL,
@@ -168,9 +173,8 @@ CREATE TABLE `sessions` (
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+-- laravel tao khi xai SESSION_DRIVER=database
 select * from sessions;
-
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('47WI6ZscaHqdOTEIIlon13dnKF5rX0cNBj5ZBY2o', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiS2VtUlZCV3JrREw3NE85NHF3eDlWd1BzYzlxNXFmSFBPUW91M1lwVyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1748524360),
 ('RNLr6jPc8KoFO1ppwehWhanCll44nV2T1vbvOdFb', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNWhjV2U0Rkwxb2t2NjZHeUdURkNHTVZnSXhjbWJjR1g1aG8yQ1g5aCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbiI7fX0=', 1748522781);

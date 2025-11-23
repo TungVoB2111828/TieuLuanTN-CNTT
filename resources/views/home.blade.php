@@ -154,28 +154,28 @@
                 <img src="{{ asset('./storage/images/AoT.jpg') }}" alt="Attack on Titan">
                 <div class="featured-content">
                     <h3>Attack on Titan: Cuộc chiến cuối cùng</h3>
-                    <p>Bài viết nổi bật trong tuần — phân tích chiều sâu tâm lý nhân vật Eren và tự do trong tuyệt vọng.</p>
+                    <p>Bài viết nổi bật trong tuần — phân tích chiều sâu tâm lý nhân vật Eren và tự do trong tuyệt vọng...</p>
                 </div>
             </div>
             <div class="featured-card">
                 <img src="{{ asset('./storage/images/KM.jpg') }}" alt="Kingsman">
                 <div class="featured-content">
                     <h3>Kingsman</h3>
-                    <p>Khám phá sự lịch lãm và tuyệt vời của các quý ông trong tổ chức mật vụ Kingsman.</p>
+                    <p>Khám phá sự lịch lãm và tuyệt vời của các quý ông trong tổ chức mật vụ Kingsman...</p>
                 </div>
             </div>
             <div class="featured-card">
                 <img src="{{ asset('./storage/images/Zootopia.jpg') }}" alt="Zootopia">
                 <div class="featured-content">
                     <h3>Zootopia: Xã hội loài vật và thông điệp về định kiến</h3>
-                    <p>Một bộ phim vừa vui nhộn vừa sâu sắc về sự khác biệt và công bằng.</p>
+                    <p>Một bộ phim vừa vui nhộn vừa sâu sắc về sự khác biệt và công bằng...</p>
                 </div>
             </div>
             <div class="featured-card">
                 <img src="{{ asset('./storage/images/Narnia.png') }}" alt="Narnia">
                 <div class="featured-content">
-                    <h3>Narnia: Huyền thoại không bao giờ cũ</h3>
-                    <p>Cánh cửa dẫn đến thế giới diệu kỳ, nơi lòng dũng cảm và niềm tin được thử thách.</p>
+                    <h3>Narnia: Huyền thoại về 1 thế giới fantasy tuổi thơ của không biết bao nhiêu người trên toàn thế giới</h3>
+                    <p>Cánh cửa dẫn đến thế giới diệu kỳ, nơi lòng dũng cảm và niềm tin được thử thách...</p>
                 </div>
             </div>
         </div>

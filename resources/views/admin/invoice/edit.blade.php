@@ -219,19 +219,16 @@
                                             <strong>Đơn hàng:</strong>
                                             @switch($invoice->order_status)
                                                 @case('new')
-                                                    <span class="badge bg-primary">Đơn hàng mới</span>
-                                                    @break
-                                                @case('pending')
-                                                    <span class="badge bg-warning">Đang xử lý</span>
+                                                    <span class="badge bg-primary">Chờ xác nhận</span>
                                                     @break
                                                 @case('processing')
-                                                    <span class="badge bg-info">Đang chuẩn bị</span>
+                                                    <span class="badge bg-info">Chờ lấy hàng</span>
                                                     @break
                                                 @case('shipped')
-                                                    <span class="badge bg-secondary">Đã giao vận</span>
+                                                    <span class="badge bg-secondary">Đang giao hàng</span>
                                                     @break
                                                 @case('delivered')
-                                                    <span class="badge bg-success">Đã giao hàng</span>
+                                                    <span class="badge bg-success">Thành công</span>
                                                     @break
                                                 @case('cancelled')
                                                     <span class="badge bg-danger">Đã hủy</span>

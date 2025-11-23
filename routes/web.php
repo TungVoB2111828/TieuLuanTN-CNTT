@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit/delete', [ProfileController::class, 'editDelete'])->name('profile.edit.delete');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+    Route::post('/orders/cancel/{invoice}', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
 // Giỏ hàng

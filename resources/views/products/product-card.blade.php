@@ -161,20 +161,6 @@
             </a>
         </h5>
 
-        <!-- Đánh giá -->
-        <div class="product-rating">
-            @for($i = 1; $i <= 5; $i++)
-                @if($i <= $product->rating)
-                    <i class="fas fa-star"></i>
-                @elseif($i - 0.5 <= $product->rating)
-                    <i class="fas fa-star-half-alt"></i>
-                @else
-                    <i class="far fa-star"></i>
-                @endif
-            @endfor
-            <span>({{ $product->stock_quantity ?? 0 }})</span>
-        </div>
-
         <!-- Giá -->
         <div class="product-price">
             {{ number_format($product->price, 0, ',', '.') }} <span class="text-sm">VNĐ</span>
