@@ -14,7 +14,6 @@
                     </a>
                 </div>
                 <div class="card-body">
-                    <!-- Display validation errors -->
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul class="mb-0">
@@ -25,10 +24,15 @@
                         </div>
                     @endif
 
-                    <!-- Display success message -->
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
+                        </div>
+                    @endif
+                    
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
                         </div>
                     @endif
 
@@ -40,8 +44,8 @@
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                           id="name" name="name" maxlength="50"
-                                           value="{{ old('name', $product->name) }}" required>
+                                        id="name" name="name" maxlength="50"
+                                        value="{{ old('name', $product->name) }}" required>
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -51,7 +55,7 @@
                                 <div class="mb-3">
                                     <label for="category_id" class="form-label">Danh mục <span class="text-danger">*</span></label>
                                     <select class="form-control @error('category_id') is-invalid @enderror"
-                                            id="category_id" name="category_id" required>
+                                        id="category_id" name="category_id" required>
                                         <option value="">-- Chọn danh mục --</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->category_id }}"
@@ -72,8 +76,8 @@
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Giá (VNĐ) <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control @error('price') is-invalid @enderror"
-                                           id="price" name="price" min="0" step="0.01"
-                                           value="{{ old('price', $product->price) }}" required>
+                                        id="price" name="price" min="0" step="1"
+                                        value="{{ old('price', $product->price) }}" required>
                                     @error('price')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -83,8 +87,8 @@
                                 <div class="mb-3">
                                     <label for="stock_quantity" class="form-label">Số lượng tồn kho <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control @error('stock_quantity') is-invalid @enderror"
-                                           id="stock_quantity" name="stock_quantity" min="0"
-                                           value="{{ old('stock_quantity', $product->stock_quantity) }}" required>
+                                        id="stock_quantity" name="stock_quantity" min="0"
+                                        value="{{ old('stock_quantity', $product->stock_quantity) }}" required>
                                     @error('stock_quantity')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -95,8 +99,8 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Mô tả</label>
                             <textarea class="form-control @error('description') is-invalid @enderror"
-                                      id="description" name="description" rows="4"
-                                      placeholder="Nhập mô tả sản phẩm...">{{ old('description', $product->description) }}</textarea>
+                                    id="description" name="description" rows="4"
+                                    placeholder="Nhập mô tả sản phẩm...">{{ old('description', $product->description) }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -105,33 +109,44 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Hình ảnh sản phẩm</label>
-                                    <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                           id="image" name="image" accept="image/jpeg,image/png,image/jpg,image/gif">
+                                    {{-- ĐÃ SỬA: Dùng image_file để upload file ảnh --}}
+                                    <label for="image_file" class="form-label">Hình ảnh sản phẩm (Upload file mới)</label>
+                                    <input type="file" class="form-control @error('image_file') is-invalid @enderror"
+                                        id="image_file" name="image_file" accept="image/jpeg,image/png,image/jpg,image/gif">
                                     <small class="form-text text-muted">Chỉ chấp nhận file: jpeg, png, jpg, gif. Kích thước tối đa: 2MB</small>
+                                    @error('image_file')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                
+                                {{-- INPUT ẨN HOẶC TEXT ĐỂ CHỨA TÊN FILE CÓ SẴN (Nếu cần) --}}
+                                <div class="mb-3">
+                                    <label for="image_url_text" class="form-label">Hoặc nhập tên file có sẵn (VD: file.jpg)</label>
+                                    <input type="text" class="form-control @error('image') is-invalid @enderror"
+                                        id="image_url_text" name="image" placeholder="Để trống nếu không muốn thay đổi" 
+                                        value="{{ old('image', $product->image_url && !str_contains($product->image_url, '/')) ? $product->image_url : '' }}">
                                     @error('image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                                <!-- Current Image -->
+
                                 @if($product->image_url)
-                                    <div class="mb-3">
+                                    <div class="mb-3" id="currentImageContainer">
                                         <label class="form-label">Hình ảnh hiện tại:</label>
                                         <div>
                                             <img id="currentImg" src="{{ asset('storage/' . $product->image_url) }}"
-                                                 alt="{{ $product->name }}"
-                                                 style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                                                alt="{{ $product->name }}"
+                                                style="max-width: 200px; max-height: 200px; object-fit: cover;">
                                         </div>
                                     </div>
                                 @endif
 
-                                <!-- Preview New Image -->
                                 <div id="imagePreview" class="mb-3" style="display: none;">
-                                    <label class="form-label">Hình ảnh mới:</label>
+                                    <label class="form-label">Hình ảnh mới (Preview):</label>
                                     <div>
                                         <img id="previewImg" src="" alt="Preview"
-                                             style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                                            style="max-width: 200px; max-height: 200px; object-fit: cover;">
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +168,7 @@
                                     <label for="status" class="form-label">Trạng thái</label>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="status" name="status" value="1"
-                                               {{ old('status', $product->status) ? 'checked' : '' }}>
+                                            {{ old('status', $product->status) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="status">
                                             <span id="statusText">{{ old('status', $product->status) ? 'Hoạt động' : 'Không hoạt động' }}</span>
                                         </label>
@@ -180,10 +195,11 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Preview image when file is selected
-    const imageInput = document.getElementById('image');
+    // ĐÃ SỬA: Lắng nghe sự kiện trên input file có ID là 'image_file'
+    const imageInput = document.getElementById('image_file'); 
     const previewImg = document.getElementById('previewImg');
     const imagePreview = document.getElementById('imagePreview');
-    const currentImg = document.getElementById('currentImg');
+    const currentImageContainer = document.getElementById('currentImageContainer');
 
     imageInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
@@ -192,15 +208,15 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
                 imagePreview.style.display = 'block';
-                if (currentImg) {
-                    currentImg.parentElement.style.display = 'none'; // Hide current image when new one is selected
+                if (currentImageContainer) {
+                    currentImageContainer.style.display = 'none'; // Ẩn ảnh cũ khi có ảnh mới
                 }
             };
             reader.readAsDataURL(file);
         } else {
             imagePreview.style.display = 'none';
-            if (currentImg) {
-                currentImg.parentElement.style.display = 'block'; // Show current image again
+            if (currentImageContainer) {
+                currentImageContainer.style.display = 'block'; // Hiện ảnh cũ nếu không chọn file mới
             }
         }
     });
@@ -217,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Format price input
+    // Format price input (giữ nguyên logic của bạn)
     const priceInput = document.getElementById('price');
     priceInput.addEventListener('input', function() {
         let value = this.value;

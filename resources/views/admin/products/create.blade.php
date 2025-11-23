@@ -46,7 +46,7 @@
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                           id="name" name="name" value="{{ old('name') }}" maxlength="50" required>
+                                            id="name" name="name" value="{{ old('name') }}" maxlength="50" required>
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -56,7 +56,7 @@
                                 <div class="mb-3">
                                     <label for="category_id" class="form-label">Danh mục <span class="text-danger">*</span></label>
                                     <select class="form-control @error('category_id') is-invalid @enderror"
-                                            id="category_id" name="category_id" required>
+                                             id="category_id" name="category_id" required>
                                         <option value="">-- Chọn danh mục --</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->category_id }}"
@@ -77,7 +77,7 @@
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Giá (VNĐ) <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control @error('price') is-invalid @enderror"
-                                           id="price" name="price" value="{{ old('price') }}" min="0" step="0.01" required>
+                                            id="price" name="price" value="{{ old('price') }}" min="0" step="0.01" required>
                                     @error('price')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -87,7 +87,7 @@
                                 <div class="mb-3">
                                     <label for="stock_quantity" class="form-label">Số lượng tồn kho <span class="text-danger">*</span></label>
                                     <input type="number" class="form-control @error('stock_quantity') is-invalid @enderror"
-                                           id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity') }}" min="0" required>
+                                            id="stock_quantity" name="stock_quantity" value="{{ old('stock_quantity') }}" min="0" required>
                                     @error('stock_quantity')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -98,21 +98,32 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Mô tả</label>
                             <textarea class="form-control @error('description') is-invalid @enderror"
-                                      id="description" name="description" rows="4"
-                                      placeholder="Nhập mô tả sản phẩm...">{{ old('description') }}</textarea>
+                                            id="description" name="description" rows="4"
+                                            placeholder="Nhập mô tả sản phẩm...">{{ old('description') }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="row">
+                            {{-- START: KHỐI INPUT ẢNH ĐÃ CHỈNH SỬA --}}
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Hình ảnh sản phẩm</label>
-                                    <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                           id="image" name="image" accept="image/jpeg,image/png,image/jpg,image/gif">
-                                    <small class="form-text text-muted">Chỉ chấp nhận file: jpeg, png, jpg, gif. Kích thước tối đa: 2MB</small>
+                                    <label for="image" class="form-label">Tên file ảnh có sẵn (trong /storage/images)</label>
+                                    <input type="text" class="form-control @error('image') is-invalid @enderror"
+                                            id="image" name="image" value="{{ old('image') }}"
+                                            placeholder="Ví dụ: AoT_manga.jpg">
+                                    <small class="form-text text-muted">Nếu bạn nhập tên file ở đây, sẽ không cần upload file.</small>
                                     @error('image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image_file" class="form-label">HOẶC Upload ảnh mới</label>
+                                    <input type="file" class="form-control @error('image_file') is-invalid @enderror"
+                                            id="image_file" name="image_file" accept="image/jpeg,image/png,image/jpg,image/gif">
+                                    <small class="form-text text-muted">Chỉ chấp nhận file: jpeg, png, jpg, gif. Kích thước tối đa: 2MB</small>
+                                    @error('image_file')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -120,12 +131,14 @@
                                     <img id="previewImg" src="" alt="Preview" style="max-width: 200px; max-height: 200px; object-fit: cover;">
                                 </div>
                             </div>
+                            {{-- END: KHỐI INPUT ẢNH ĐÃ CHỈNH SỬA --}}
+                            
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Trạng thái</label>
                                     <div class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="status" name="status"
-                                               {{ old('status', '1') ? 'checked' : '' }}>
+                                                {{ old('status', '1') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="status">
                                             <span id="statusText">{{ old('status', '1') ? 'Hoạt động' : 'Không hoạt động' }}</span>
                                         </label>
@@ -152,7 +165,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Preview image when file is selected
-    const imageInput = document.getElementById('image');
+    // CHÚ Ý: ĐÃ SỬA input file ID từ 'image' thành 'image_file'
+    const imageInput = document.getElementById('image_file'); 
     const imagePreview = document.getElementById('imagePreview');
     const previewImg = document.getElementById('previewImg');
 

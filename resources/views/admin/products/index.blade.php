@@ -80,7 +80,7 @@
             // Initialize DataTable
             $('#productsTable').DataTable({
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+                    "url": "{{ asset('js/lang/Vietnamese.json') }}"
                 },
                 "order": [
                     [0, "desc"]

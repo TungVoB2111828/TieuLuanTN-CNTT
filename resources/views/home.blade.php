@@ -135,6 +135,7 @@
                     ['label' => 'Tutorial Book', 'id' => 8],
                     ['label' => 'Movies', 'id' => 9],
                     ['label' => 'Magazine', 'id' => 10],
+                    ['label' => 'Boardgame', 'id' => 11],
                 ];
             @endphp
             @foreach($categories as $category)

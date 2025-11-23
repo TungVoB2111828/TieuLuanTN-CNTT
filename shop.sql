@@ -48,7 +48,8 @@ INSERT INTO `categories` (`category_id`, `name`, `description`) VALUES
 (7, 'Artbook', 'Sách ảnh'),
 (8, 'Tutorial Book', 'Sách hướng dẫn'),
 (9, 'Movies', 'Phim điện ảnh'),
-(10, 'Magazine', 'Tạp Chí');
+(10, 'Magazine', 'Tạp Chí'),
+(11, 'Boardgame', 'Các loại trò chơi thú vị');
 select * from categories;
 delete from categories;
 
@@ -133,7 +134,9 @@ CREATE TABLE `products` (
   `status` tinyint(1) NOT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+select * from products;
+ALTER TABLE products
+MODIFY product_id INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE products ADD COLUMN rating FLOAT DEFAULT 0;
 
 INSERT INTO `products` (`product_id`, `staff_id`, `category_id`, `name`, `description`, `price`, `stock_quantity`, `image_url`, `status`, `created_at`) VALUES
